@@ -1,8 +1,87 @@
+body {
+	font: 16px;
+	font-family: 'Space Mono', monospace;
+    background: url("curry1.jpg") no-repeat left top black;
+
+}
+h1 {
+	text-align: center;
+	font-size: 500%;
+	font-family: 'Permanent Marker', cursive;
+	color:#b4b3ae;
+}
+ .row {
+	width: 450px;
+	height: 450px;
+	margin: 0 auto; 
+}
+.box {
+	box-sizing: border-box;
+	width: 150px;
+	height: 150px;
+	float: left;
+	font-size: 600%;
+	line-height: 150px;
+	text-align: center;
+    color:#b4b3ae;
+}
+.box:nth-child(1), .box:nth-child(2), 
+.box:nth-child(4), .box:nth-child(5) {
+	border-right: 4px solid #9e8a54;
+	border-bottom: 4px solid #9e8a54;
+	color:#b4b3ae;
+}
+.box:nth-child(3), .box:nth-child(6) {
+	border-bottom: 4px solid #9e8a54;
+	color: #b4b3ae;
+}
+.box:nth-child(7), .box:nth-child(8) {
+	border-right: 4px solid #9e8a54;
+	color: #b4b3ae;
+}
+.play {
+	text-align: left;
+	margin-top: 50px;
+}
+.play button {
+	font-size: 200%;
+	font-family: 'Space Mono', monospace;
+	font-weight: bold;
+	padding: 5px 30px;
+	cursor: pointer;
+
+}
+
+#alert {
+	box-sizing: border-box;
+	width: 300px;
+	min-height: 130px;
+	position: absolute;
+	top: 240px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #aaa;
+	background-color: #fff;
+	text-align: center;
+	font-size: 200%;
+	padding: 20px 0;
+	display: none;
+}
+#alert button {
+	font-size: 70%;
+	font-family: 'Space Mono', monospace;
+	padding: 0 10px;
+	cursor: pointer;
+}
 #board {
   margin-top: 10px;
+
 }
 
 .box {
   border: 1px solid black;
   height: 150px;
+
 }
