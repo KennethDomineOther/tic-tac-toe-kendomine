@@ -1,9 +1,13 @@
 var letHover = false;
 
+//Different winning combinations
 $(document).ready(function() {
 	var wins = [[0,1,2], [3,4,5], [6,7,8],
 				[0,3,6], [1,4,7], [2,5,8],
 				[0,4,8], [2,4,6]];
+
+
+	//Choosing to "X" or "O" prior to starting games
 	var choice = "You will be <br>"; 
 	choice += "<input type='radio' name='choice' value='x'> X";
 	choice += "<br>";
@@ -34,7 +38,7 @@ $(document).ready(function() {
 			if (letHover) {
 				if (currentGame.cells[count])
 					return;
-				$(this).text("");	
+				$(this).text("hhhhhhhh");	
 			}
 		}
 	);
@@ -87,6 +91,8 @@ $(document).ready(function() {
 			if (this.currentStep == "X") {
 				result = playerX.checkStep();
 				if (result) this.finish = "Player X won!";
+				
+
 			} else {
 				result = playerO.checkStep();
 				if (result) this.finish = "Player O won!";
@@ -158,11 +164,12 @@ $(document).ready(function() {
 					}
 				}
 				if (result) return true;
+
 			}
 			return false;
 		}
 	}
-
+//
 	function computer(arr1, arr2) {
 		var result, count1, count2;
 
