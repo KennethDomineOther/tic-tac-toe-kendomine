@@ -2,43 +2,53 @@ var letHover = false;
 
 //Different winning combinations
 $(document).ready(function() {
+	// Good approach!
 	var wins = [[0,1,2], [3,4,5], [6,7,8],
 				[0,3,6], [1,4,7], [2,5,8],
 				[0,4,8], [2,4,6]];
 
 
 	//Choosing to "X" or "O" prior to starting games
+	// We can create new elements in a much easier way than this:
 	var choice = "You will be <br>"; 
 	choice += "<input type='radio' name='choice' value='x'> X";
 	choice += "<br>";
 	choice += "<input type='radio' name='choice' value='o'> O"; 
 	choice += "<br>";
 	choice += "<button id='ok'>Ok</button>";
+	// Nice use of constructors!
 	var currentGame = new Game();
 	var playerX = new Player();
 	var playerO = new Player();
 
+	// You could also use the 'button' selector or add an id to the button instead
 	$(".play button").on("click", function() {
 		currentGame.clearGame();
 		$("#alert span").html(choice);
 		$("#alert").show();
 	});
 
+	// Very, very hard to understand due to naming choices
 	$(".box").hover(
+		// Even though we dont have to, naming the callbacks helps us understand the code
 		function() {
+			// 'let' is more appropriate in this situation than 'var'
+			// 'currentCellIndex' is a better name than 'count'
 			var count = $(this).index(".box");
 			if (letHover) {
+				// Reverse the logic: if (!currentGame.cells[count]) { change text here }
 				if (currentGame.cells[count])
 					return;
 				$(this).text(currentGame.currentStep);	
 			}
-		}, 
+		},
+		// Again, naming the callbacks just helps the code be more readable.
 		function() {
 			var count = $(this).index(".box");
 			if (letHover) {
 				if (currentGame.cells[count])
 					return;
-				$(this).text("hhhhhhhh");	
+				$(this).text("");
 			}
 		}
 	);
@@ -47,6 +57,7 @@ $(document).ready(function() {
 		var count = $(this).index(".box");
 		if (letHover && !currentGame.cells[count]) {
 			letHover = false;
+			// its not clear what 'fixStep' means -- work on naming for more readable code
 			currentGame.fixStep(count);
 		}
 	});
@@ -75,22 +86,24 @@ $(document).ready(function() {
 	});
 
 	function Game() {
+		// Naming: it looks like currentStep should be currentTurn or currentMark?
 		this.currentStep = "",
 		this.cells = ["", "", "", "", "", "", "", "", ""],
-
+        // would be better to name clearGame to 'reset'
 		this.clearGame = function(){
 			this.currentStep = "";
+			// Since we have Game.cells then Player.cells would be more consistent and readable
 			playerX.steps = [];
 			playerO.steps = [];
 			this.cells = ["", "", "", "", "", "", "", "", ""];
 			$(".box").text("");
 		},
-
+		// I think isGameOver would be a good name too
 		this.checkEnd = function() {
 			var result = false;
 			if (this.currentStep == "X") {
 				result = playerX.checkStep();
-				if (result) this.finish = "Player X won!";
+				if (result) { this.finish = "Player X won!"; }
 				
 
 			} else {
@@ -99,10 +112,11 @@ $(document).ready(function() {
 			}
 			var cond = 
 			(playerX.steps.length + playerO.steps.length == 9);
+			// Keep standard syntax: if (cond) { commands }
 			if (cond && (!result)) this.finish = "Draw...";
 			return result || cond;
 		},
-
+		// instead of using <br> we can create a new element
 		this.endGame = function() {
 			var str = this.finish;
 			str += "<br>";
@@ -169,7 +183,7 @@ $(document).ready(function() {
 			return false;
 		}
 	}
-//
+// Really not clear what computer is :D
 	function computer(arr1, arr2) {
 		var result, count1, count2;
 
